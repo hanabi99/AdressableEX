@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: da85ea048d8827b4a85db1c73bdd2467
     m_Address: Lesson1_CallClass
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d5c95e012099cf4caf3b9d46c1690a8, type: 2}
   m_SchemaSet:
