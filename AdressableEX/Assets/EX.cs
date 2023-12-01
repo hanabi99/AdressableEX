@@ -20,16 +20,21 @@ public class EX : MonoBehaviour
 
         //    AdressableMrg.getInstance().Release<GameObject>("Cube");
         //});
-        AdressableMrg.getInstance().LoadAssetsAsync<Object>(Addressables.MergeMode.Intersection, (obj) =>
+        //AdressableMrg.getInstance().LoadAssetsAsync<Object>(Addressables.MergeMode.Intersection, (obj) =>
+        //{
+        //    Instantiate(obj);
+        //    Debug.Log(obj.name);
+        //}, "Cube", "SD");
+        AdressableMrg.getInstance().LoadAssetsAsync<GameObject>(Addressables.MergeMode.Intersection, (obj) =>
         {
             Instantiate(obj);
             Debug.Log(obj.name);
         }, "Cube", "SD");
-        AdressableMrg.getInstance().LoadAssetsAsync<Object>(Addressables.MergeMode.Intersection, (obj) =>
-        {
-            Instantiate(obj);
-            Debug.Log(obj.name);
-        }, "Cube", "SD");
+        //Addressables.LoadAssetsAsync<GameObject>(new List<string>(2) { "Sphere", "HD" }, (obj) =>
+        //{
+        //    print(obj.name);
+        //    Instantiate(obj);
+        //}, Addressables.MergeMode.Intersection);
     }
 
 

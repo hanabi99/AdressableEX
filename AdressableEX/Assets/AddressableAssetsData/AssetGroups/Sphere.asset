@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 1631c00071e54e241a1a12fc4f397229
     m_Address: Sphere
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HD
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d5c95e012099cf4caf3b9d46c1690a8, type: 2}
   m_SchemaSet:
