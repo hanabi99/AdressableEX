@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameObject_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
   m_Group: {fileID: 11400000, guid: 1fdb8bdbfb7e2824fb5073d037cdd378, type: 2}
-  m_StaticContent: 0
+  m_StaticContent: 1

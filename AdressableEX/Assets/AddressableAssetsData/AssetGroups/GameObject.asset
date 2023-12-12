@@ -17,6 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 614e67713ac113342953300f5ba66524
   m_SerializeEntries:
+  - m_GUID: 1631c00071e54e241a1a12fc4f397229
+    m_Address: Cube
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SD
+  - m_GUID: 4015ada964e3c7449b9b3fb0fc4a7b7f
+    m_Address: Cube
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SD
   - m_GUID: 32767a7c776b6f645bc631df32e69015
     m_Address: Cube
     m_ReadOnly: 0
