@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EX : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class EX : MonoBehaviour
             Instantiate(obj);
             Debug.Log(obj.name);
         }, "Cube", "SD");
+
         //Addressables.LoadAssetsAsync<GameObject>(new List<string>(2) { "Sphere", "HD" }, (obj) =>
         //{
         //    print(obj.name);
