@@ -11,7 +11,7 @@ public class AdressableMrg
     private AdressableMrg()
     {
     }
-    private static AdressableMrg instance = null;//保证内存可见性，防止编译器过度优化(指令重排序)
+    private static AdressableMrg instance = null;
     public static AdressableMrg getInstance()
     {
         if (instance == null)
@@ -25,7 +25,7 @@ public class AdressableMrg
     /// <summary>
     /// 存储异步加载返回值
     /// </summary>
-    public Dictionary<string, IEnumerator> resDic = new Dictionary<string, IEnumerator>();
+    public Dictionary<string, AsyncOperationHandle> resDic = new Dictionary<string, AsyncOperationHandle>();
 
     /// <summary>
     /// 异步加载
@@ -43,7 +43,7 @@ public class AdressableMrg
         //如果加载过资源
         if (resDic.ContainsKey(keyname))
         {
-            handle = (AsyncOperationHandle<T>)resDic[keyname];
+            handle = resDic[keyname].Convert<T>();
 
             //如果连续whlie循环加载 他加载结束了
             if (handle.IsDone)//如果异步加载结束 那肯定是成功了的
@@ -102,7 +102,7 @@ public class AdressableMrg
 
         if (resDic.ContainsKey(Keyname))
         {
-            handle = (AsyncOperationHandle<IList<T>>)resDic[Keyname];
+            handle = resDic[Keyname].Convert<IList<T>>();
             if (handle.IsDone)
             {
                 foreach (var item in handle.Result)
@@ -153,7 +153,7 @@ public class AdressableMrg
         string keyName = name + "_" + typeof(T).Name;
         if (resDic.ContainsKey(keyName))
         {
-            AsyncOperationHandle<T> handle = (AsyncOperationHandle<T>)resDic[keyName];
+            AsyncOperationHandle<T> handle = resDic[keyName].Convert<T>();
             Addressables.Release(handle);
             resDic.Remove(keyName);
         }
@@ -176,7 +176,7 @@ public class AdressableMrg
 
         if (resDic.ContainsKey(Keyname))
         {
-            AsyncOperationHandle<IList<T>> handel = (AsyncOperationHandle<IList<T>>)resDic[Keyname];
+            AsyncOperationHandle<IList<T>> handel = resDic[Keyname].Convert<IList<T>>();
             Addressables.Release(handel);
             resDic.Remove(Keyname);
         }
@@ -186,6 +186,10 @@ public class AdressableMrg
     /// </summary>
     public void ClearRes()
     {
+        foreach (var item in resDic.Values)
+        {
+            Addressables.Release(item);
+        }
         resDic.Clear();
         AssetBundle.UnloadAllAssetBundles(true);
         Resources.UnloadUnusedAssets();
