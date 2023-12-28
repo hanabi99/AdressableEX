@@ -16,11 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: ea2bcd24c66dec649b8546ec689bcaf4
-  m_SerializeEntries:
-  - m_GUID: 7778d5283af7caf4c98e36932f6536d6
-    m_Address: Sphere2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d5c95e012099cf4caf3b9d46c1690a8, type: 2}
   m_SchemaSet:

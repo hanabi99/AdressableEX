@@ -6,8 +6,20 @@ using System;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.AddressableAssets;
 
+public class AsyncOperationHandleInfo{
+
+    public AsyncOperationHandle handle;
+
+    public uint refenceCount;
+    public AsyncOperationHandleInfo(AsyncOperationHandle handle)
+    {
+        this.handle = handle;
+        refenceCount += 1;
+    }
+}
 public class AdressableMrg
 {
+
     private AdressableMrg()
     {
     }
@@ -19,13 +31,12 @@ public class AdressableMrg
             instance = new AdressableMrg();
         }
         return instance;
-
     }
 
     /// <summary>
     /// 存储异步加载返回值
     /// </summary>
-    public Dictionary<string, AsyncOperationHandle> resDic = new Dictionary<string, AsyncOperationHandle>();
+    public Dictionary<string, AsyncOperationHandleInfo> resDic = new Dictionary<string, AsyncOperationHandleInfo>();
 
     /// <summary>
     /// 异步加载
@@ -43,7 +54,9 @@ public class AdressableMrg
         //如果加载过资源
         if (resDic.ContainsKey(keyname))
         {
-            handle = resDic[keyname].Convert<T>();
+            handle = resDic[keyname].handle.Convert<T>();
+
+            resDic[keyname].refenceCount++;
 
             //如果连续whlie循环加载 他加载结束了
             if (handle.IsDone)//如果异步加载结束 那肯定是成功了的
@@ -78,7 +91,8 @@ public class AdressableMrg
             }
 
         };
-        resDic.Add(keyname, handle);
+        AsyncOperationHandleInfo info = new AsyncOperationHandleInfo(handle);
+        resDic.Add(keyname, info);
     }
 
     /// <summary>
@@ -102,7 +116,9 @@ public class AdressableMrg
 
         if (resDic.ContainsKey(Keyname))
         {
-            handle = resDic[Keyname].Convert<IList<T>>();
+            handle = resDic[Keyname].handle.Convert<IList<T>>();
+
+            resDic[Keyname].refenceCount++;
             if (handle.IsDone)
             {
                 foreach (var item in handle.Result)
@@ -139,7 +155,8 @@ public class AdressableMrg
                 }
             }
         };
-        resDic.Add(Keyname, handle);
+        AsyncOperationHandleInfo info = new AsyncOperationHandleInfo(handle);
+        resDic.Add(Keyname, info);
 
     }
 
@@ -153,9 +170,14 @@ public class AdressableMrg
         string keyName = name + "_" + typeof(T).Name;
         if (resDic.ContainsKey(keyName))
         {
-            AsyncOperationHandle<T> handle = resDic[keyName].Convert<T>();
-            Addressables.Release(handle);
-            resDic.Remove(keyName);
+            //手动计数减一
+            resDic[keyName].refenceCount--;
+            if (resDic[keyName].refenceCount == 0)
+            {
+                AsyncOperationHandle<T> handle = resDic[keyName].handle.Convert<T>();
+                Addressables.Release(handle);
+                resDic.Remove(keyName);
+            }
         }
     }
 
@@ -175,10 +197,14 @@ public class AdressableMrg
         Keyname += typeof(T).Name;
 
         if (resDic.ContainsKey(Keyname))
-        {
-            AsyncOperationHandle<IList<T>> handel = resDic[Keyname].Convert<IList<T>>();
-            Addressables.Release(handel);
-            resDic.Remove(Keyname);
+        { //手动计数减一
+            resDic[Keyname].refenceCount--;
+            if (resDic[Keyname].refenceCount == 0)
+            {
+                AsyncOperationHandle<IList<T>> handel = resDic[Keyname].handle.Convert<IList<T>>();
+                Addressables.Release(handel);
+                resDic.Remove(Keyname);
+            }
         }
     }
     /// <summary>
@@ -188,7 +214,7 @@ public class AdressableMrg
     {
         foreach (var item in resDic.Values)
         {
-            Addressables.Release(item);
+            Addressables.Release(item.handle);
         }
         resDic.Clear();
         AssetBundle.UnloadAllAssetBundles(true);

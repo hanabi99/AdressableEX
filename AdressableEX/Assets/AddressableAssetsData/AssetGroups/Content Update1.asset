@@ -10,27 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: GameObject
+  m_Name: Content Update1
   m_EditorClassIdentifier: 
-  m_GroupName: GameObject
+  m_GroupName: Content Update1
   m_Data:
     m_SerializedData: []
-  m_GUID: 614e67713ac113342953300f5ba66524
+  m_GUID: ff1be0e45003f0840bc04930dfa26e0f
   m_SerializeEntries:
-  - m_GUID: 1631c00071e54e241a1a12fc4f397229
-    m_Address: Cube
+  - m_GUID: 3a49b8ff8b64d4d4ea5b3bcfd27ee070
+    m_Address: RoleInfo
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - SD
-  - m_GUID: 32767a7c776b6f645bc631df32e69015
-    m_Address: Cube
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SD
-    - HD
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d5c95e012099cf4caf3b9d46c1690a8, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d5cfeb0b19a538b469c51c30f653953a, type: 2}
-    - {fileID: 11400000, guid: 69a30f6132108044d9bc32af0683f39b, type: 2}
+    - {fileID: 11400000, guid: 7de8fa74dab17ec4c88398f8feb44740, type: 2}
+    - {fileID: 11400000, guid: 2315fe19dfcceb74ba187aae4ec8cfff, type: 2}
