@@ -30,32 +30,32 @@ public class Lesson3 : MonoBehaviour
         {
             if (handle.Result != null)
             {
-               GameObject cube =  Instantiate(handle.Result); //ÒòÎªÊÇÊµÀı»¯³öÀ´µÄ ÓÃµÄÊÇÅäÖÃÎÄ¼ş¸´ÖÆ³öÈ¥µÄ ²»ÊÇÔ­ÉúµÄÔ¤ÖÆÌå
+               GameObject cube =  Instantiate(handle.Result); //å› ä¸ºæ˜¯å®ä¾‹åŒ–å‡ºæ¥çš„ ç”¨çš„æ˜¯é…ç½®æ–‡ä»¶å¤åˆ¶å‡ºå»çš„ ä¸æ˜¯åŸç”Ÿçš„é¢„åˆ¶ä½“
 
-                assetReference.ReleaseAsset();//ÊÍ·Å×ÊÔ´ ²»»áÓ°ÏìÊµÀı»¯µÄ³öÀ´µÄObj£¬µ«ÊÇ»áÓ°ÏìÊ¹ÓÃ¼°ÒıÓÃ
+                assetReference.ReleaseAsset();//é‡Šæ”¾èµ„æº ä¸ä¼šå½±å“å®ä¾‹åŒ–çš„å‡ºæ¥çš„Objï¼Œä½†æ˜¯ä¼šå½±å“ä½¿ç”¨åŠå¼•ç”¨
 
                 assetReferenceTMaterial.LoadAssetAsync().Completed += (AsyncOperationStatus) =>
                 {
                     cube.GetComponent<MeshRenderer>().material =  AsyncOperationStatus.Result;
 
-                    assetReferenceTMaterial.ReleaseAsset(); //»á¶ªÊ§²ÄÖÊ ÒòÎª²»ÊÇÊµÀı»¯ »áÊµÊµÔÚÔÚÓÃµÄÒıÓÃÀàĞÍ »áÊ¹ÓÃÔ­ÉúµÄ×ÊÔ´
-                    //±ØĞëÊ¹ÓÃAB°ü¼ÓÔØµÄÄ£Ê½ ²ÅÄÜ¿´³ö
+                    assetReferenceTMaterial.ReleaseAsset(); //ä¼šä¸¢å¤±æè´¨ å› ä¸ºä¸æ˜¯å®ä¾‹åŒ– ä¼šå®å®åœ¨åœ¨ç”¨çš„å¼•ç”¨ç±»å‹ ä¼šä½¿ç”¨åŸç”Ÿçš„èµ„æº
+                    //å¿…é¡»ä½¿ç”¨ABåŒ…åŠ è½½çš„æ¨¡å¼ æ‰èƒ½çœ‹å‡º
 
                     print(assetReferenceTMaterial.Asset);//null
-                    print(AsyncOperationStatus.Result);//²»Îª¿Õ
+                    print(AsyncOperationStatus.Result);//ä¸ä¸ºç©º
                 };
             }
         }
     }
     /// <summary>
-    /// Òì²½³¡¾°¼ÓÔØ
+    /// å¼‚æ­¥åœºæ™¯åŠ è½½
     /// </summary>
     public void LoadSecen()
     {
         SceneassetReference.LoadSceneAsync().Completed += (AsyncOperationHandle) => { print("?"); };
     }
     /// <summary>
-    /// Ö±½ÓÊµÀı»¯¶ÔÏó 
+    /// ç›´æ¥å®ä¾‹åŒ–å¯¹è±¡ 
     /// </summary>
     public void Init()
     {

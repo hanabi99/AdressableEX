@@ -17,7 +17,7 @@ public class Lesson14 : MonoBehaviour
         //2.通过资源名或标签名加载单个资源(动态加载)
         //Addressables.LoadAssetAsync<GameObject>("Cube")
         //3.通过资源名或标签名或两者组合加载多个资源(动态加载)
-        //Addressables.LoadAssetsAsync<GameObject>(new List<string>() { "Cube", "SD" }, (obj) => { }, Addressables.MergeMode.Intersection);
+        Addressables.LoadAssetsAsync<GameObject>(new List<string>() { "Cube", "SD" }, (obj) => { }, Addressables.MergeMode.Intersection);
         #endregion
 
         #region 知识点二 加载资源时Addressables帮助我们做了哪些事情？
